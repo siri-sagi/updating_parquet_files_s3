@@ -16,5 +16,8 @@ def upload_files(event, context):
         df = pd.read_json(bio, lines=True)
         splits = list(df.groupby("order_status"))
         for split in splits:
-            s3_url = f'{baseline_file}/{split[0]}.json.gz'
-            split[1].to_json(s3_url, orient='records', lines=True, compression='gzip')
+            s3_url = f'{baseline_file}/{split[0]}.parquet.gzip'
+            split[1].to_json(s3_url, compression='gzip')
+
+
+upload_files(None, None)

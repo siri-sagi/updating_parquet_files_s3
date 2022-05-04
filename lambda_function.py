@@ -17,7 +17,7 @@ def upload_files(event, context):
         splits = list(df.groupby("order_status"))
         for split in splits:
             s3_url = f'{baseline_file}/{split[0]}.parquet.gzip'
-            split[1].to_json(s3_url, compression='gzip')
+            split[1].to_parquet(s3_url, compression='gzip')
 
 
 upload_files(None, None)

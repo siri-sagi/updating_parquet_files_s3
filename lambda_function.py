@@ -20,4 +20,6 @@ def upload_files(event, context):
             split[1].to_parquet(s3_url, compression='gzip')
 
 
+
 upload_files(None, None)
+
